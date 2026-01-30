@@ -164,8 +164,24 @@
 
         .lock-icon {
             font-size: 80px;
-            margin-bottom: 20px;
+            /* maintain vertical position but reduce gap below the icon */
+            margin-top: 24px;
+            margin-bottom: 12px;
             animation: lockSway 3s ease-in-out infinite;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            /* slightly lower pivot so the sway looks natural after shifting down */
+            transform-origin: center 40%;
+        }
+
+        /* Ensure any image used as the lock icon is larger and responsive */
+        .lock-icon img {
+            /* responsive size: min 90px, scales with viewport, max 140px */
+            width: clamp(90px, 14vw, 140px);
+            height: auto;
+            object-fit: contain;
+            display: block;
         }
 
         @keyframes lockSway {
@@ -177,7 +193,8 @@
             font-family: 'Dancing Script', cursive;
             color: var(--deep-rose);
             font-size: 2rem;
-            margin: 10px 0 10px 0;
+            /* reduce top margin so heading sits closer to the icon */
+            margin: 6px 0 10px 0;
             border: none;
             padding-bottom: 0;
         }
@@ -303,7 +320,7 @@
     <!-- Password Lock Screen -->
     <div id="passwordScreen" class="password-screen">
         <div class="lock-container">
-            <div class="lock-icon">🔐</div>
+            <div class="lock-icon"><img src="images/zcX5gBbri.png" alt=""></div>
             <h2>Enter to Celebrate</h2>
             <p>This special message is locked with love 💕</p>
             <input type="password" id="passwordInput" class="password-input" placeholder="Enter the password..." />
