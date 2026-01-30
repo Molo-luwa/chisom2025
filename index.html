@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chisom: My Graduate Queen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&family=Playfair+Display:italic,wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-pink: #fff0f3;
+            --accent-pink: #ff85a1;
+            --deep-rose: #ff4d6d;
+            --white: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-pink);
+            font-family: 'Montserrat', sans-serif;
+            color: #444;
+            overflow-x: hidden;
+        }
+
+        /* Falling Petals Animation */
+        .petal {
+            position: fixed;
+            top: -10%;
+            z-index: 9999;
+            user-select: none;
+            cursor: default;
+            animation: fall 10s linear infinite;
+            color: var(--accent-pink);
+        }
+
+        @keyframes fall {
+            0% { top: -10%; transform: translateX(0) rotate(0deg); }
+            100% { top: 110%; transform: translateX(100px) rotate(360deg); }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://www.transparenttextures.com/patterns/cubes.png');
+            text-align: center;
+            animation: fadeIn 3s ease-in;
+        }
+
+        .hero h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(3rem, 10vw, 6rem);
+            color: var(--deep-rose);
+            margin: 0;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+        }
+
+        /* The Epistle Sections */
+        .content-wrapper {
+            max-width: 800px;
+            margin: -50px auto 100px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(255, 133, 161, 0.2);
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+        }
+
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--deep-rose);
+            font-size: 2rem;
+            border-bottom: 2px solid var(--bg-pink);
+            padding-bottom: 10px;
+        }
+
+        .epistle-text {
+            line-height: 2;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background: var(--bg-pink);
+            padding: 20px;
+            border-left: 5px solid var(--accent-pink);
+            font-style: italic;
+            margin: 20px 0;
+        }
+
+        /* Floating Hearts */
+        .heart-float {
+            display: inline-block;
+            animation: heartBeat 1.5s infinite;
+            color: var(--deep-rose);
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.2); }
+            30% { transform: scale(1); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            background: var(--white);
+            color: var(--accent-pink);
+            font-weight: bold;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Password Lock Screen */
+        .password-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff85a1 0%, #fff0f3 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            flex-direction: column;
+        }
+
+        .password-screen.hidden {
+            display: none;
+        }
+
+        .lock-container {
+            text-align: center;
+            background: var(--white);
+            padding: 60px 40px;
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(255, 77, 109, 0.3);
+            animation: lockBounce 0.6s ease-out;
+            max-width: 400px;
+        }
+
+        @keyframes lockBounce {
+            0% { transform: scale(0.8) translateY(-20px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        .lock-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: lockSway 3s ease-in-out infinite;
+        }
+
+        @keyframes lockSway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .lock-container h2 {
+            font-family: 'Dancing Script', cursive;
+            color: var(--deep-rose);
+            font-size: 2rem;
+            margin: 10px 0 10px 0;
+            border: none;
+            padding-bottom: 0;
+        }
+
+        .lock-container p {
+            color: #999;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--bg-pink);
+            border-radius: 15px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 10px rgba(255, 133, 161, 0.3);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--accent-pink), var(--deep-rose));
+            color: var(--white);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-family: 'Montserrat', sans-serif;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .error-message.show {
+            opacity: 1;
+        }
+
+        /* Image Placeholders */
+        .image-placeholder {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--bg-pink), var(--accent-pink));
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+            box-shadow: 0 15px 35px rgba(255, 133, 161, 0.2);
+            font-size: 80px;
+            color: var(--white);
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .image-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .image-placeholder-text {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .image-placeholder-label {
+            font-size: 1.2rem;
+            margin-top: 15px;
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Password Lock Screen -->
+    <div id="passwordScreen" class="password-screen">
+        <div class="lock-container">
+            <div class="lock-icon">🔐</div>
+            <h2>Enter to Celebrate</h2>
+            <p>This special message is locked with love 💕</p>
+            <input type="password" id="passwordInput" class="password-input" placeholder="Enter the password..." />
+            <button onclick="checkPassword()" class="submit-btn">Unlock My Love</button>
+            <div id="errorMessage" class="error-message">Wrong password, try again! 💔</div>
+        </div>
+    </div>
+
+    <div id="petals-container"></div>
+
+    <section class="hero">
+        <p style="letter-spacing: 5px; color: var(--accent-pink);">CONGRATULATIONS</p>
+        <h1>Chisom Precious</h1>
+        <p style="font-size: 1.2rem;">My Best Friend • My Sister • My Pride</p>
+        <div class="heart-float" style="font-size: 2rem; margin-top: 20px;">❤️</div>
+    </section>
+
+    <div class="content-wrapper">
+        
+        <div class="card visible">            <div class="image-placeholder">
+                <div class="image-placeholder-text">
+                    <div><img src="images/WhatsApp Image 2026-01-30 at 09.23.04.jpeg" alt=""></div>
+                    <div class="image-placeholder-label">Picture 1</div>
+                </div>
+            </div>            <h2>To the Woman of the Moment</h2>
+            <div class="epistle-text">
+                <p>Chisom, seeing you in your convocation gown isn't just a celebration of a degree. It’s a celebration of your soul. I’ve watched you navigate the storms of university life with a grace that most people can only dream of. You didn't just survive; you bloomed.</p>
+                <div class="highlight-box">
+                    "I love you so much, more than words could ever weave together in a lifetime."
+                </div>
+                <p>Every late-night call, every shared laugh, and every tear has led to this moment. You are a masterpiece in progress, and today, the world finally gets to see the brilliance I’ve known all along.</p>
+            </div>
+        </div>
+
+        <div class="card visible">
+            <h2>A Prayer & A Promise</h2>
+            <div class="epistle-text">
+                <p>My dearest Chisom, as you step out of those campus gates, my heart is full of prayers for you. <strong>I pray that God grants all your heart's desires.</strong> I pray that the road ahead of you is paved with favor, that your feet never stumble, and that you find success in places you never even looked.</p>
+                <p>But beyond the success, I make you a promise: <strong>We remain friends forever.</strong> No distance, no career, and no amount of time will ever dim the bond we share. You are my person, and I will be in the front row of every achievement you ever have, cheering the loudest.</p>
+            </div>
+            <div class="image-placeholder">
+                <div class="image-placeholder-text">
+                    <div><img src="images/WhatsApp Image 2026-01-30 at 09.23.04 (1).jpeg" alt=""></div>
+                    <div class="image-placeholder-label">Picture 2</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card visible">
+            <h2>The Love I Carry for You</h2>
+            <div class="epistle-text">
+                <p>If I wrote a thousand pages, I still couldn't finish telling you how much you mean to me. You are my safe haven. Thank you for being the kind of friend who listens with her heart. Thank you for your strength, which inspires me daily.</p>
+                <p style="text-align: center; font-family: 'Dancing Script'; font-size: 2rem; color: var(--deep-rose);">
+                    I love you so much, Chisom. <br>
+                    Today, tomorrow, and for all eternity.
+                </p>
+            </div>
+            <div class="image-placeholder">
+                <div class="image-placeholder-text">
+                    <div><img src="images/WhatsApp Image 2026-01-30 at 09.23.04 (2).jpeg" alt=""></div>
+                    <div class="image-placeholder-label">Picture 3</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        Designed for Chisom's Big Day | Class of 2025
+    </footer>
+
+    <script>
+        // Password Protection
+        const PASSWORD = 'chisom2025';
+
+        function checkPassword() {
+            const input = document.getElementById('passwordInput');
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (input.value === PASSWORD) {
+                document.getElementById('passwordScreen').classList.add('hidden');
+                errorMessage.classList.remove('show');
+            } else {
+                errorMessage.classList.add('show');
+                input.value = '';
+                input.focus();
+                
+                // Shake animation
+                input.style.animation = 'none';
+                setTimeout(() => {
+                    input.style.animation = 'shake 0.5s';
+                }, 10);
+            }
+        }
+
+        // Allow enter key to submit password
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('passwordInput').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    checkPassword();
+                }
+            });
+            document.getElementById('passwordInput').focus();
+        });
+
+        // Add shake animation to styles dynamically
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Create falling petals
+        const container = document.getElementById('petals-container');
+        const petalIcons = ['🌸', '❤️', '✨', '☁️'];
+        
+        for (let i = 0; i < 30; i++) {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.innerHTML = petalIcons[Math.floor(Math.random() * petalIcons.length)];
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDelay = Math.random() * 10 + 's';
+            petal.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            container.appendChild(petal);
+        }
+
+        // Simple scroll reveal
+        window.addEventListener('scroll', () => {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                if(cardTop < window.innerHeight - 100) {
+                    card.classList.add('visible');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
