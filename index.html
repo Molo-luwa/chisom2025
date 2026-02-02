@@ -22,7 +22,6 @@
             overflow-x: hidden;
         }
 
-        /* Falling Petals Animation */
         .petal {
             position: fixed;
             top: -10%;
@@ -38,7 +37,6 @@
             100% { top: 110%; transform: translateX(100px) rotate(360deg); }
         }
 
-        /* Hero Section */
         .hero {
             height: 100vh;
             display: flex;
@@ -58,7 +56,6 @@
             filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
         }
 
-        /* The Epistle Sections */
         .content-wrapper {
             max-width: 800px;
             margin: -50px auto 100px;
@@ -105,7 +102,6 @@
             margin: 20px 0;
         }
 
-        /* Floating Hearts */
         .heart-float {
             display: inline-block;
             animation: heartBeat 1.5s infinite;
@@ -128,7 +124,6 @@
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* Password Lock Screen */
         .password-screen {
             position: fixed;
             top: 0;
@@ -164,20 +159,16 @@
 
         .lock-icon {
             font-size: 80px;
-            /* maintain vertical position but reduce gap below the icon */
             margin-top: 24px;
             margin-bottom: 12px;
             animation: lockSway 3s ease-in-out infinite;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            /* slightly lower pivot so the sway looks natural after shifting down */
             transform-origin: center 40%;
         }
 
-        /* Ensure any image used as the lock icon is larger and responsive */
         .lock-icon img {
-            /* responsive size: min 90px, scales with viewport, max 140px */
             width: clamp(90px, 14vw, 140px);
             height: auto;
             object-fit: contain;
@@ -193,7 +184,6 @@
             font-family: 'Dancing Script', cursive;
             color: var(--deep-rose);
             font-size: 2rem;
-            /* reduce top margin so heading sits closer to the icon */
             margin: 6px 0 10px 0;
             border: none;
             padding-bottom: 0;
@@ -259,7 +249,6 @@
             opacity: 1;
         }
 
-        /* Image Placeholders */
         .image-placeholder {
             width: 100%;
             aspect-ratio: 1;
@@ -317,7 +306,6 @@
 </head>
 <body>
 
-    <!-- Password Lock Screen -->
     <div id="passwordScreen" class="password-screen">
         <div class="lock-container">
             <div class="lock-icon"><img src="images/zcX5gBbri.png" alt=""></div>
@@ -393,7 +381,7 @@
     </footer>
 
     <script>
-        // Password Protection
+
         const PASSWORD = 'chisom2025';
 
         function checkPassword() {
@@ -407,8 +395,7 @@
                 errorMessage.classList.add('show');
                 input.value = '';
                 input.focus();
-                
-                // Shake animation
+
                 input.style.animation = 'none';
                 setTimeout(() => {
                     input.style.animation = 'shake 0.5s';
@@ -416,7 +403,6 @@
             }
         }
 
-        // Allow enter key to submit password
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('passwordInput').addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
@@ -426,7 +412,6 @@
             document.getElementById('passwordInput').focus();
         });
 
-        // Add shake animation to styles dynamically
         const style = document.createElement('style');
         style.innerHTML = `
             @keyframes shake {
@@ -437,7 +422,6 @@
         `;
         document.head.appendChild(style);
 
-        // Create falling petals
         const container = document.getElementById('petals-container');
         const petalIcons = ['🌸', '❤️', '✨', '☁️'];
         
@@ -451,7 +435,6 @@
             container.appendChild(petal);
         }
 
-        // Simple scroll reveal
         window.addEventListener('scroll', () => {
             const cards = document.querySelectorAll('.card');
             cards.forEach(card => {
